@@ -33,12 +33,16 @@ public class WallMove : MonoBehaviour
     {
         //Debug.Log("Dung Trung Walllll");
         if (other.gameObject.tag.Equals("ResetWall"))
+<<<<<<< HEAD
+            obj.transform.position = new Vector3(oldPosition, transform.position.y, 0);
+=======
         {
             //float newY = transform.position.y;
             //obj.transform.position = new Vector3(oldPosition, newY, 0);
 
             obj.transform.position = new Vector3(oldPosition, transform.position.y, 0);
         }
+>>>>>>> 0eb8179834b14fcfd841f8755a33be414928d50d
 
     }
 

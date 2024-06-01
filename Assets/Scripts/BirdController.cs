@@ -5,13 +5,21 @@ using UnityEngine;
 public class BirdController : MonoBehaviour
 {
     public float flyPower = 10;
+
     GameObject obj;
+    GameObject gameController;
+
     // Start is called before the first frame update
     void Start()
     {
         obj = gameObject;
         //flyPower = 100;
-
+        
+        if (gameController == null)
+        {
+            gameController = GameObject.FindGameObjectWithTag("GameController");
+        }    
+        
     }
 
     // Update is called once per frame
@@ -32,6 +40,6 @@ public class BirdController : MonoBehaviour
     }    
     void EndGame()
     {
-        Debug.Log("End game roi con ga nay muahahaa");
+        gameController.GetComponent<GameController>().EndGame();
     }    
 }

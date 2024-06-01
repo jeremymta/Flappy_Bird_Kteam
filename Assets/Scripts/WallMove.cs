@@ -4,8 +4,8 @@ using System.Collections;
 public class WallMove : MonoBehaviour
 {
     public float moveSpeed;
-    public float minY;
-    public float maxY;
+    //public float minY;
+    //public float maxY;
 
 
     private float oldPosition;
@@ -17,8 +17,8 @@ public class WallMove : MonoBehaviour
         obj = gameObject;
         oldPosition = 10;
         moveSpeed = 2;
-        minY = -1;
-        maxY = 1;
+        //minY = -1;
+        //maxY = 1;
         
     }
 
@@ -35,11 +35,10 @@ public class WallMove : MonoBehaviour
         if (other.gameObject.tag.Equals("ResetWall"))
         {
             //float newY = transform.position.y;
-            //obj.transform.position = new Vector3(newY, newY, 0);
+            //obj.transform.position = new Vector3(oldPosition, newY, 0);
 
             obj.transform.position = new Vector3(oldPosition, transform.position.y, 0);
         }
-
     }
 
 }

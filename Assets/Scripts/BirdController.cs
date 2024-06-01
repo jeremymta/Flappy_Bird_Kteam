@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class BirdController : MonoBehaviour
 {
-    public float flyPower = 10;
+    public float flyPower = 7;
+
+    public AudioClip flyClip;
+    public AudioClip gameOverClip;
+
+    private AudioSource audioSource;
 
     GameObject obj;
     GameObject gameController;
@@ -14,6 +19,9 @@ public class BirdController : MonoBehaviour
     {
         obj = gameObject;
         //flyPower = 100;
+
+        audioSource = obj.GetComponent<AudioSource>();  
+        audioSource.clip = flyClip;
         
         if (gameController == null)
         {
@@ -27,7 +35,9 @@ public class BirdController : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            Debug.Log("Flyyyy");
+            //Debug.Log("Flyyyy");
+
+            audioSource.Play();
             obj.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, flyPower));
         }
 
@@ -40,6 +50,8 @@ public class BirdController : MonoBehaviour
     }    
     void EndGame()
     {
+        audioSource.clip = gameOverClip;
+        audioSource.Play();
         gameController.GetComponent<GameController>().EndGame();
     }    
 }

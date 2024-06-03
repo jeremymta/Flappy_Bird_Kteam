@@ -47,7 +47,14 @@ public class BirdController : MonoBehaviour
     {
         //Debug.Log("Collided with (in ra ten dt da va cham) "+ other.gameObject.name);
         EndGame();
-    }    
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        //Debug.Log("test point");
+        gameController.GetComponent<GameController>().GetPoint();
+    }
+
     void EndGame()
     {
         audioSource.clip = gameOverClip;

@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
     bool isEndGame;
+    int gamePoint = 0;
+    public Text txtPoint;
     
     // Start is called before the first frame update
     void Start()
@@ -36,6 +40,13 @@ public class GameController : MonoBehaviour
             }
         }
     }
+
+    public void GetPoint()
+    {
+        gamePoint++;
+        txtPoint.text = "Point: " + gamePoint.ToString();
+    }    
+
     public void EndGame()
     {
         isEndGame = true;

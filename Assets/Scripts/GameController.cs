@@ -7,15 +7,26 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    bool isEndGame;
+    bool isStartFirstTime = true;
+    public bool isEndGame;
     int gamePoint = 0;
     public Text txtPoint;
-    
+    public GameObject pnlEndGame;
+    public Text txtEndPoint;
+    public Button btnRestart;
+
+    public Sprite btnIdle;
+    public Sprite btnHover;
+    public Sprite btnClick;
+
+
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 0;
         isEndGame = false;
+        pnlEndGame.SetActive(false);
+        isStartFirstTime = true;  
     }
 
     // Update is called once per frame
@@ -23,13 +34,13 @@ public class GameController : MonoBehaviour
     {
         if (isEndGame)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && isStartFirstTime)
             {
                 //Time.timeScale = 1;
                 //isEndGame = false ;
                 //Load lai man choi
-                SceneManager.LoadScene(0);
-
+                
+                StartGame();    
             }
         }    
         else
@@ -41,18 +52,46 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public void ReStartButtonClick()
+    {
+        btnRestart.GetComponent<Image>().sprite = btnClick;
+    }
+
+    public void ReStartButtonHover()
+    {
+        btnRestart.GetComponent<Image>().sprite = btnHover;
+    }
+
+    public void ReStartButtonIdle()
+    {
+        btnRestart.GetComponent<Image>().sprite = btnIdle;
+    }
+
     public void GetPoint()
     {
         gamePoint++;
         txtPoint.text = "Point: " + gamePoint.ToString();
     }    
 
+    void StartGame()
+    {
+        SceneManager.LoadScene(0);
+    }    
+
+    public void ReStart()
+    {
+        Debug.Log("Test Restart");
+        StartGame();
+    }    
+
     public void EndGame()
     {
         isEndGame = true;
+        isStartFirstTime = false;
 
         //Debug.Log("End game!");
         Time.timeScale = 0;
-        
+        pnlEndGame.SetActive(true);
+        txtEndPoint.text = "Your point\n" + gamePoint.ToString();
     }    
 }

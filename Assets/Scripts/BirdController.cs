@@ -36,8 +36,11 @@ public class BirdController : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             //Debug.Log("Flyyyy");
-
-            audioSource.Play();
+            if (!gameController.GetComponent<GameController>().isEndGame)
+            {
+                audioSource.Play();
+            }    
+            
             obj.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, flyPower));
         }
 

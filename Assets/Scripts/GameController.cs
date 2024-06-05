@@ -15,9 +15,9 @@ public class GameController : MonoBehaviour
     public Text txtEndPoint;
     public Button btnRestart;
 
-    public Sprite btnIdle;
-    public Sprite btnHover;
-    public Sprite btnClick;
+    public Sprite btnIdle; // Trang thai mac dinh button
+    public Sprite btnHover; // Di chuot qua button
+    public Sprite btnClick; // click hoac cham vao button
 
 
     // Start is called before the first frame update

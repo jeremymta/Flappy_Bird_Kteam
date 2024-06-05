@@ -10,6 +10,7 @@ public class BirdController : MonoBehaviour
     public AudioClip gameOverClip;
 
     private AudioSource audioSource;
+    private Animator anim;
 
     GameObject obj;
     GameObject gameController;
@@ -22,6 +23,9 @@ public class BirdController : MonoBehaviour
 
         audioSource = obj.GetComponent<AudioSource>();  
         audioSource.clip = flyClip;
+        anim = obj.GetComponent<Animator>();
+        anim.SetFloat("flyPower", 0);
+        anim.SetBool("isDead", false);
         
         if (gameController == null)
         {
@@ -43,7 +47,7 @@ public class BirdController : MonoBehaviour
             
             obj.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, flyPower));
         }
-
+        anim.SetFloat("flyPower", obj.GetComponent<Rigidbody2D>().velocity.y);
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -60,6 +64,7 @@ public class BirdController : MonoBehaviour
 
     void EndGame()
     {
+        anim.SetBool("isDead", true);
         audioSource.clip = gameOverClip;
         audioSource.Play();
         gameController.GetComponent<GameController>().EndGame();

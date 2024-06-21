@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Time.timeScale = 0;
+        Time.timeScale = 1; //0
         isEndGame = false;
         pnlEndGame.SetActive(false);
         isStartFirstTime = true;  
@@ -45,7 +45,7 @@ public class GameController : MonoBehaviour
         }    
         else
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && Time.timeScale == 0)
             {
                 Time.timeScale = 1;
             }

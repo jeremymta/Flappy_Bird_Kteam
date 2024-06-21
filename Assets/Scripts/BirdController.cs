@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BirdController : MonoBehaviour
 {
-    public float flyPower = 7;
+    public float flyPower = 5;
 
     public AudioClip flyClip;
     public AudioClip gameOverClip;
@@ -37,16 +37,32 @@ public class BirdController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            //Debug.Log("Flyyyy");
+            Debug.Log("Flyyyy");
             if (!gameController.GetComponent<GameController>().isEndGame)
             {
                 audioSource.Play();
-            }    
-            
-            obj.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, flyPower));
+            }
+
+            obj.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, flyPower), ForceMode2D.Impulse);
         }
+        //if (Input.touchCount > 0)
+        //{
+        //    Touch touch = Input.GetTouch(0);
+        //    Vector2 touchPosition = touch.position;
+
+        //    if (touchPosition.y > obj.transform.position.y)
+        //    {
+        //        Debug.Log("Flyyyy");
+        //        if (!gameController.GetComponent<GameController>().isEndGame)
+        //        {
+        //            audioSource.Play();
+        //        }
+
+        //        obj.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, flyPower));
+        //    }
+        //}
         anim.SetFloat("flyPower", obj.GetComponent<Rigidbody2D>().velocity.y);
     }
 
